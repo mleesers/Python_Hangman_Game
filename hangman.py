@@ -5,14 +5,14 @@ def mainMenu():
     print("\nYou have 9 chances to guess the letter and only 1 chance to guess the word correctly. Good luck!")
     count = 0
     while(count != 1):
-        choice = int(input("\n\n\nWhat choice would you like[1/2/3]?: "))
-        if choice == 1:
+        choice = input("\n\n\nWhat choice would you like[1/2/3]?: ")
+        if choice == '1':
             pokemon()
             count += 1
-        elif(choice == 2):
+        elif(choice == '2'):
             count += 1
             mortal()
-        elif(choice == 3):
+        elif(choice == '3'):
             count += 1
             horror()
         else:
@@ -72,6 +72,7 @@ def gameplay(letters,blank,word):
                      print("\nIncorrect! You have ",chances," chances remaining")
                 else:
                     print("\nYou're out of chances! Game Over")
+                    end()
             elif LetterInWord == True:
                 used.append(letterChoice)
                 for x in range(len(blank)):
