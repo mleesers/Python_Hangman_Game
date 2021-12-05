@@ -43,15 +43,13 @@ def blanks(word):
         letters.append(word[x])
     for x in range(len(letters)):
         blank.append('_')
-    gameplay(letters,blank)
+    gameplay(letters,blank,word)
 
-def gameplay(letters,blank):
-    
-    letters = letters
-    blank = blank
+def gameplay(letters,blank,word):
     chances = 9
-    print(" ".join(str(x) for x in blank))
+    
     while(chances > 0):
+        print(" ".join(str(x) for x in blank))
         choice = int(input("Do you want to guess the letter or word?[1/2]: "))
         if choice == 1:
             check = 0
@@ -62,13 +60,19 @@ def gameplay(letters,blank):
                     LetterInWord = True
             if LetterInWord == False:
                 chances -= 1
-                print("wrong bitch")
+                print("wrong")
                 print(chances)
             elif LetterInWord == True:
+                for x in range(len(blank)):
+                    if(letters[x] == letterChoice):
+                        blank[x] = letterChoice
                 print("you right")
         elif choice == 2:
             wordGuess = input("what is your guess: ").lower()
-            print(wordGuess)
+            if(wordGuess == word):
+                print("yay you won!")
+            else:
+                print("you lost")
 
 
 
