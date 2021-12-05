@@ -1,7 +1,7 @@
 import random
 def mainMenu():
-    print("Welcome to the hangman game!\nYou have three choices of subjects to choose from.\n")
-    print("you can choose from pokemon, mortal kombat characters or horror characters.\n")
+    print("\nWelcome to the hangman game!\nYou have three choices of subjects to choose from.\n")
+    print("\nYou can choose from pokemon, mortal kombat characters or horror characters.\n")
     print("You have 9 chances to guess the letter and only 1 chance to guess the word correctly. Good luck!")
     count = 0
     while(count != 1):
@@ -49,45 +49,50 @@ def blanks(word):
 
 def gameplay(letters,blank,word):
     chances = 9
-    
+    used = []
     while(chances > 0):
         print(" ".join(str(x) for x in blank))
-        choice = int(input("Do you want to guess the letter or word?[1/2]: "))
-        if choice == 1:
+        print("\n")
+        if blank == letters:
+                print("Congrats! You won")
+                end()
+        choice = (input("Do you want to guess the letter or word?[l/w]: ")).lower()
+        if choice == 'l':
             check = 0
             letterChoice = input("what letter do you want to choose?: ").lower()
             LetterInWord = False
             for x in range(len(letters)):
                 if(letters[x] == letterChoice):
                     LetterInWord = True
-            if LetterInWord == False:
+            if letterChoice in used:
+                print("\nyou've already chosen this letter\n")    
+            elif LetterInWord == False:
                 chances -= 1
-                print("wrong")
-                print(chances)
+                used.append(letterChoice)
+                print("\nIncorrect! You have ",chances," chances remaining")
             elif LetterInWord == True:
+                used.append(letterChoice)
                 for x in range(len(blank)):
                     if(letters[x] == letterChoice):
                         blank[x] = letterChoice
-                print("you right")
-        elif choice == 2:
+                print("\nCorrect!")
+        elif choice == 'w':
             wordGuess = input("what is your guess: ").lower()
             if(wordGuess == word):
-                print("yay you won!")
-                replay = input("would you like to play again?[y/n]")
-                if(replay == 'y'):
-                    mainMenu()
-                elif(replay == 'n'):
-                    break
+                print("\nyay you won!")
+                end()
             else:
-                print("You lost :(")
-                replay = input("would you like to play again?[y/n]")
-                if(replay == 'y'):
-                    mainMenu()
-                else:
-                    break
+                print("\n1You lost :(")
+                end()  
+        else:
+            print("\nEnter a valid choice")
 
-
-
+def end():
+    retry = input("Would you like to to try again?[y/n]: ")
+    if(retry == 'y'):
+        mainMenu()
+    else:
+        exit()
 
 
 
