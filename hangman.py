@@ -2,7 +2,7 @@ import random
 def mainMenu():
     print("\nWelcome to the hangman game!\n\nYou have three choices of subjects to choose from.\n")
     print("You can choose from pokemon, mortal kombat characters or horror characters.")
-    print("\nYou have 9 chances to guess the letter and only 1 chance to guess the word correctly. Good luck!")
+    print("\nYou have 9 chances to guess the letter and only 1 chance to guess the word correctly. Spaces count as a letter too! Good luck!")
     count = 0
     while(count != 1):
         choice = input("\n\n\nWhat choice would you like[1/2/3]?: ")
@@ -27,12 +27,12 @@ def pokemon():
     blanks(word)
 
 def mortal():
-    mortalKombatCharacters = ["mileena","reptile","johnny","scorpion","subzero","raiden","kitana","baraka","shinnok","takeda"]
+    mortalKombatCharacters = ["mileena","reptile","johnny cage","scorpion","subzero","raiden","kitana","baraka","shinnok","takeda"]
     word = random.choice(mortalKombatCharacters)
     print("\n\n\nYou chose mortal kombat characters!")
     blanks(word)
 def horror():
-    horrorCharacters = ["freddie","jason","michael","pinhead","ghostface","chucky","hannibal","leatherface","jigsaw","carrie"]
+    horrorCharacters = ["freddie","jason","michael myers","pinhead","ghostface","chucky","hannibal","leatherface","jigsaw","slender man"]
     word = random.choice(horrorCharacters)
     print("\n\n\nYou chose horror characters")
     blanks(word)
@@ -69,9 +69,9 @@ def gameplay(letters,blank,word):
                 chances -= 1
                 used.append(letterChoice)
                 if chances > 0:
-                     print("\nIncorrect! You have ",chances," chances remaining")
+                     print("\nIncorrect! You have",chances,"chances remaining")
                 else:
-                    print("\nYou're out of chances! Game Over")
+                    print("\nYou're out of chances! The word was",word,"Game Over")
                     end()
             elif LetterInWord == True:
                 used.append(letterChoice)
