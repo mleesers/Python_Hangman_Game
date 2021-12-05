@@ -24,17 +24,19 @@ def mainMenu():
 def pokemon():
     pokemon = ["pikachu","gengar","bulbasaur","chimchar","charmander","squirtle","eevee","magikarp","dratini","gardevoir"]
     word = random.choice(pokemon)
-    print("\n\n\nyou chose pokemon " + word)
+    print("\n\n\nYou chose pokemon!" + word)
     blanks(word)
 
 def mortal():
     mortalKombatCharacters = ["mileena","reptile","johnny","scorpion","subzero","raiden","kitana","baraka","shinnok","takeda"]
     word = random.choice(mortalKombatCharacters)
-    print("\n\n\nYou chose mortal kombat characters" + word)
+    print("\n\n\nYou chose mortal kombat characters!" + word)
+    blanks(word)
 def horror():
     horrorCharacters = ["freddie","jason","michael","pinhead","ghostface","chucky","hannibal","leatherface","jigsaw","carrie"]
     word = random.choice(horrorCharacters)
     print("\n\n\nYou chose horror characters " + word)
+    blanks(word)
 
 def blanks(word):
     letters = []
@@ -71,8 +73,18 @@ def gameplay(letters,blank,word):
             wordGuess = input("what is your guess: ").lower()
             if(wordGuess == word):
                 print("yay you won!")
+                replay = input("would you like to play again?[y/n]")
+                if(replay == 'y'):
+                    mainMenu()
+                elif(replay == 'n'):
+                    break
             else:
-                print("you lost")
+                print("You lost :(")
+                replay = input("would you like to play again?[y/n]")
+                if(replay == 'y'):
+                    mainMenu()
+                else:
+                    break
 
 
 
