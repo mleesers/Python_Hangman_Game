@@ -1,8 +1,8 @@
 import random
 def mainMenu():
-    print("\nWelcome to the hangman game!\nYou have three choices of subjects to choose from.\n")
-    print("\nYou can choose from pokemon, mortal kombat characters or horror characters.\n")
-    print("You have 9 chances to guess the letter and only 1 chance to guess the word correctly. Good luck!")
+    print("\nWelcome to the hangman game!\n\nYou have three choices of subjects to choose from.\n")
+    print("You can choose from pokemon, mortal kombat characters or horror characters.")
+    print("\nYou have 9 chances to guess the letter and only 1 chance to guess the word correctly. Good luck!")
     count = 0
     while(count != 1):
         choice = int(input("\n\n\nWhat choice would you like[1/2/3]?: "))
@@ -20,22 +20,21 @@ def mainMenu():
 
 
 
-
 def pokemon():
     pokemon = ["pikachu","gengar","bulbasaur","chimchar","charmander","squirtle","eevee","magikarp","dratini","gardevoir"]
     word = random.choice(pokemon)
-    print("\n\n\nYou chose pokemon!" + word)
+    print("\n\n\nYou chose pokemon!")
     blanks(word)
 
 def mortal():
     mortalKombatCharacters = ["mileena","reptile","johnny","scorpion","subzero","raiden","kitana","baraka","shinnok","takeda"]
     word = random.choice(mortalKombatCharacters)
-    print("\n\n\nYou chose mortal kombat characters!" + word)
+    print("\n\n\nYou chose mortal kombat characters!")
     blanks(word)
 def horror():
     horrorCharacters = ["freddie","jason","michael","pinhead","ghostface","chucky","hannibal","leatherface","jigsaw","carrie"]
     word = random.choice(horrorCharacters)
-    print("\n\n\nYou chose horror characters " + word)
+    print("\n\n\nYou chose horror characters")
     blanks(word)
 
 def blanks(word):
@@ -69,7 +68,10 @@ def gameplay(letters,blank,word):
             elif LetterInWord == False:
                 chances -= 1
                 used.append(letterChoice)
-                print("\nIncorrect! You have ",chances," chances remaining")
+                if chances > 0:
+                     print("\nIncorrect! You have ",chances," chances remaining")
+                else:
+                    print("\nYou're out of chances! Game Over")
             elif LetterInWord == True:
                 used.append(letterChoice)
                 for x in range(len(blank)):
@@ -77,12 +79,12 @@ def gameplay(letters,blank,word):
                         blank[x] = letterChoice
                 print("\nCorrect!")
         elif choice == 'w':
-            wordGuess = input("what is your guess: ").lower()
+            wordGuess = input("what is your guess?: ").lower()
             if(wordGuess == word):
                 print("\nyay you won!")
                 end()
             else:
-                print("\n1You lost :(")
+                print("\nYou lost :(")
                 end()  
         else:
             print("\nEnter a valid choice")
